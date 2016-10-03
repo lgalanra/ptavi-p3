@@ -10,27 +10,37 @@ class SmallSMILHandler(ContentHandler):
 
     def startElement(self, name, attrs):
         if name == 'root-layout':
-            self.width = attrs.get('width', '')
-            self.height = attrs.get('height', '')
-            self.background-color('background-color','')
+            rootdicc = {}
+            dicc['width'] = attrs.get('width', '')
+            dicc['height'] = attrs.get('height', '')
+            dicc['background-color'] = attrs.get('background-color','')
+            milista.append(rootdicc)
         elif name == 'region':
-            self.id = attrs.get('id','')
-            self.top = attrs.get('top','')
-            self.bottom = attrs.get('bottom','')
-            self.left = attrs.get('left','')
-            self.right = attrs.get('right','')
+            namedicc = {}
+            dicc['id'] = attrs.get('id','')
+            dicc['top'] = attrs.get('top','')
+            dicc['bottom'] = attrs.get('bottom','')
+            dicc['left'] = attrs.get('left','')
+            dicc['right'] = attrs.get('right','')
+            milista.append(namedicc)
         elif name == 'img':
-            self.src = attrs.get('src','')
-            self.region = attrs.get('region','')
-            self.begin = attrs.get('begin','')
-            self.dur = attrs.get('dur','')
+            imgdicc = {}
+            dicc['src'] = attrs.get('src','')
+            dicc['region'] = attrs.get('region','')
+            dicc['begin'] = attrs.get('begin','')
+            dicc['dur'] = attrs.get('dur','')
+            milista.append(imgdicc)
         elif name == 'audio':
-            self.src = attrs.get('src','')
-            self.begin = attrs.get('begin','')
-            self.dur = attrs.get('dur','')
+            audiodicc = {}
+            dicc['src'] = attrs.get('src','')
+            dicc['begin'] = attrs.get('begin','')
+            dicc['dur'] = attrs.get('dur','')
+            milista.append(audiodicc)
         elif name == 'textstream':
-            self.src = attrs.get('src','')
-            self.region = attrs.get('region','')
+            textdicc = {}
+            dicc['src'] = attrs.get('src','')
+            dicc['region'] = attrs.get('region','')
+            milista.append(textdicc)
 
 if __name__ == "__main__":
     pass
