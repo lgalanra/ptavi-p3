@@ -3,6 +3,7 @@
 
 from xml.sax.handler import ContentHandler
 
+class smilHandler(ContentHandler):
+
 if __name__ == "__main__":
     pass
-    
