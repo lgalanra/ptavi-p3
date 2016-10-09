@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
 class SmallSMILHandler(ContentHandler):
@@ -10,37 +11,40 @@ class SmallSMILHandler(ContentHandler):
 
     def startElement(self, name, attrs):
         if name == 'root-layout':
-            rootdicc = {}
+            dicc = {}
             dicc['width'] = attrs.get('width', '')
             dicc['height'] = attrs.get('height', '')
             dicc['background-color'] = attrs.get('background-color','')
-            milista.append(rootdicc)
+            self.milista.append(dicc)
         elif name == 'region':
-            namedicc = {}
+            dicc = {}
             dicc['id'] = attrs.get('id','')
             dicc['top'] = attrs.get('top','')
             dicc['bottom'] = attrs.get('bottom','')
             dicc['left'] = attrs.get('left','')
             dicc['right'] = attrs.get('right','')
-            milista.append(namedicc)
+            self.milista.append(dicc)
         elif name == 'img':
-            imgdicc = {}
+            dicc = {}
             dicc['src'] = attrs.get('src','')
             dicc['region'] = attrs.get('region','')
             dicc['begin'] = attrs.get('begin','')
             dicc['dur'] = attrs.get('dur','')
-            milista.append(imgdicc)
+            self.milista.append(dicc)
         elif name == 'audio':
-            audiodicc = {}
+            dicc = {}
             dicc['src'] = attrs.get('src','')
             dicc['begin'] = attrs.get('begin','')
             dicc['dur'] = attrs.get('dur','')
-            milista.append(audiodicc)
+            self.milista.append(dicc)
         elif name == 'textstream':
-            textdicc = {}
+            dicc = {}
             dicc['src'] = attrs.get('src','')
             dicc['region'] = attrs.get('region','')
-            milista.append(textdicc)
+            self.milista.append(dicc)
+
+    def get_tags(lista):
+        pass
 
 if __name__ == "__main__":
     pass
