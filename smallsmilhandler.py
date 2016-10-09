@@ -16,6 +16,7 @@ class SmallSMILHandler(ContentHandler):
             dicc['height'] = attrs.get('height', '')
             dicc['background-color'] = attrs.get('background-color','')
             self.milista.append(dicc)
+            print(self.milista)
         elif name == 'region':
             dicc = {}
             dicc['id'] = attrs.get('id','')
@@ -24,6 +25,7 @@ class SmallSMILHandler(ContentHandler):
             dicc['left'] = attrs.get('left','')
             dicc['right'] = attrs.get('right','')
             self.milista.append(dicc)
+            print(self.milista)
         elif name == 'img':
             dicc = {}
             dicc['src'] = attrs.get('src','')
@@ -31,20 +33,26 @@ class SmallSMILHandler(ContentHandler):
             dicc['begin'] = attrs.get('begin','')
             dicc['dur'] = attrs.get('dur','')
             self.milista.append(dicc)
+            print(self.milista)
         elif name == 'audio':
             dicc = {}
             dicc['src'] = attrs.get('src','')
             dicc['begin'] = attrs.get('begin','')
             dicc['dur'] = attrs.get('dur','')
             self.milista.append(dicc)
+            print(self.milista)
         elif name == 'textstream':
             dicc = {}
             dicc['src'] = attrs.get('src','')
             dicc['region'] = attrs.get('region','')
             self.milista.append(dicc)
+            print(self.milista)
 
     def get_tags(lista):
         pass
 
 if __name__ == "__main__":
-    pass
+    parser = make_parser()
+    myHandler = SmallSMILHandler()
+    parser.setContentHandler(myHandler)
+    parser.parse(open('karaoke.smil'))
