@@ -7,8 +7,11 @@ import sys
 import json
 import urllib.request
 
+
 class KaraokeLocal():
     def __init__(self):
+        self.original = ''
+        self.resultante = ''
         parser = make_parser()
         myHandler = SmallSMILHandler()
         parser.setContentHandler(myHandler)
@@ -26,12 +29,13 @@ class KaraokeLocal():
             texto = texto + linea + '\n'
         return(texto)
 
-    def to_json(self):
-      #if self.resultante == None:
-        json.dump(self.datos, open("karaoke.json",'w'), sort_keys=True, indent=4, separators=(',', ': '))
-    #    else:
-    #        json.dump(self.etiquetas, open("local.json",'w'), sort_keys=True, indent=4, separators=(',', ': '))
-
+    def to_json(self, original, resultante):
+        if self.resultante is None:
+            json.dump(self.datos, open(nombreFichero, 'w'),
+                      sort_keys=True, indent=4, separators=(',', ': '))
+        else:
+            json.dump(self.datos, open("local.json", 'w'),
+                      sort_keys=True, indent=4, separators=(',', ': '))
 
     def do_local(self):
         myHandler = SmallSMILHandler()
@@ -54,12 +58,13 @@ if __name__ == "__main__":
         myHandler = SmallSMILHandler()
         parser.setContentHandler(myHandler)
         parser.parse(open(sys.argv[1]))
-
+        n = str(sys.argv[1])
+        nombreFichero = n.split(".")[0]+".json"
     except ValueError:
         sys.exit('Usage: python3 karaoke.py file.smil')
 
 print(luis)
-luis.to_json()
+luis.to_json(luis.original, None)
 luis.do_local()
-
+luis.to_json(luis.original, "local.json")
 print(luis)
