@@ -30,7 +30,8 @@ class KaraokeLocal():
         json.dump(datos, open('karaoke.json', 'w'))
 
     def do_local(self):
-        for dicc in datos:
+        myHandler = SmallSMILHandler()
+        for dicc in self.datos:
             linea = ''
             linea = linea + dicc['name']
             for tag in dicc:
@@ -40,7 +41,7 @@ class KaraokeLocal():
                         urllib.request.urlretrieve(dicc[tag], recorte)
                         dicc[tag] = recorte
                 if tag != 'name' and dicc[tag] != '':
-                    linea = linea + '\t' + tag + '="' + dicc[tag] + '"'
+                    linea = linea + '\t' + tag + '="' + dicc[tag] + '"\t'
 
 if __name__ == "__main__":
     try:
@@ -52,3 +53,9 @@ if __name__ == "__main__":
 
     except ValueError:
         sys.exit('Usage: python3 karaoke.py file.smil')
+
+print(luis)
+
+luis.do_local()
+
+print(luis)
