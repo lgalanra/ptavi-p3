@@ -10,7 +10,6 @@ import urllib.request
 
 class KaraokeLocal():
     def __init__(self):
-        self.original = ''
         self.resultante = ''
         parser = make_parser()
         myHandler = SmallSMILHandler()
@@ -29,8 +28,8 @@ class KaraokeLocal():
             texto = texto + linea + '\n'
         return(texto)
 
-    def to_json(self, original, resultante):
-        if self.resultante is None:
+    def to_json(self, resultante):
+        if resultante is "":
             json.dump(self.datos, open(nombreFichero, 'w'),
                       sort_keys=True, indent=4, separators=(',', ': '))
         else:
@@ -64,7 +63,7 @@ if __name__ == "__main__":
         sys.exit('Usage: python3 karaoke.py file.smil')
 
 print(luis)
-luis.to_json(luis.original, None)
+luis.to_json("")
 luis.do_local()
-luis.to_json(luis.original, "local.json")
+luis.to_json("local.json")
 print(luis)
