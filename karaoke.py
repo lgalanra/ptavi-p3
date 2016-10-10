@@ -25,7 +25,9 @@ for dicc in datos:
     for tag in dicc:
         if tag == 'src':
             if dicc[tag].startswith('http://'):
-                filename, headers = urllib.request.urlretrieve(dicc[tag])
+                recorte = dicc[tag].split('/')[-1]
+                urllib.request.urlretrieve(dicc[tag], recorte)
+                dicc[tag] = recorte
         if tag != 'name' and dicc[tag] != '':
             linea = linea + '\t' + tag + '="' + dicc[tag] + '"'
     print(linea)
