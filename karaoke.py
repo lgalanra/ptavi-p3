@@ -22,12 +22,16 @@ class KaraokeLocal():
             linea = linea + dicc['name']
             for tag in dicc:
                 if tag != 'name' and dicc[tag] != '':
-                    linea = linea + '\t' + tag + '="' + dicc[tag] + '"'
-                    texto = texto + linea
+                    linea = linea + '\t' + tag + '="' + dicc[tag] + '"\t'
+            texto = texto + linea + '\n'
         return(texto)
 
     def to_json(self):
-        json.dump(datos, open('karaoke.json', 'w'))
+      #if self.resultante == None:
+        json.dump(self.datos, open("karaoke.json",'w'), sort_keys=True, indent=4, separators=(',', ': '))
+    #    else:
+    #        json.dump(self.etiquetas, open("local.json",'w'), sort_keys=True, indent=4, separators=(',', ': '))
+
 
     def do_local(self):
         myHandler = SmallSMILHandler()
@@ -55,7 +59,7 @@ if __name__ == "__main__":
         sys.exit('Usage: python3 karaoke.py file.smil')
 
 print(luis)
-
+luis.to_json()
 luis.do_local()
 
 print(luis)
