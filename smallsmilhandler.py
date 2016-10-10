@@ -54,10 +54,7 @@ class SmallSMILHandler(ContentHandler):
 
 
     def get_tags(self):
-        for item in self.milista:
-            print(item['name'])
-            del(item['name'])
-            print(item)
+        return self.milista
 
 
 if __name__ == "__main__":
@@ -65,4 +62,4 @@ if __name__ == "__main__":
     myHandler = SmallSMILHandler()
     parser.setContentHandler(myHandler)
     parser.parse(open('karaoke.smil'))
-    myHandler.get_tags()
+    print(myHandler.get_tags())
