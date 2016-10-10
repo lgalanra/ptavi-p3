@@ -4,6 +4,7 @@
 from xml.sax import make_parser
 from smallsmilhandler import SmallSMILHandler
 import sys
+import json
 
 if __name__ == "__main__":
     try:
@@ -24,3 +25,5 @@ for dicc in datos:
         if tag != 'name' and dicc[tag] != '':
             linea = linea + '\t' + tag + '="' + dicc[tag] + '"'
     print(linea)
+
+json.dump(datos, open('karaoke.json', 'w'))
