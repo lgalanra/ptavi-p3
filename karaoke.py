@@ -5,6 +5,7 @@ from xml.sax import make_parser
 from smallsmilhandler import SmallSMILHandler
 import sys
 import json
+import urllib.request
 
 if __name__ == "__main__":
     try:
@@ -22,6 +23,9 @@ for dicc in datos:
     linea = ''
     linea = linea + dicc['name']
     for tag in dicc:
+        if tag == 'src':
+            if dicc[tag].startswith('http://'):
+                filename, headers = urllib.request.urlretrieve(dicc[tag])
         if tag != 'name' and dicc[tag] != '':
             linea = linea + '\t' + tag + '="' + dicc[tag] + '"'
     print(linea)
